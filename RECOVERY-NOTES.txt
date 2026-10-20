@@ -1,0 +1,46 @@
+T-Bank iOS SDK cache recovery
+============================
+
+Recovered packages:
+  T-ID 2.0.3
+  TSSLPinningPublic 11.14.0
+
+The package files were copied without modification from the local CocoaPods
+cache and compared byte-for-byte with the application's installed Pods.
+The original Git history is not present in this snapshot.
+
+Original sources:
+  https://opensource.tbank.ru/mobile-tech/T-ID-iOS.git (tag 2.0.3)
+  https://opensource.tbank.ru/mobile-tech/sslpinning.git (tag 11.14.0)
+
+Original podspec checksums from the application Podfile.lock:
+  T-ID: 53e5d90c81796ddd88bdb0ca3c925a1182dc58cd
+  TSSLPinningPublic: 577daab2f9da63b16e0614095b6bc4134ad45263
+
+Repository layout:
+  T-ID.podspec.json
+  TSSLPinningPublic.podspec.json
+  T-ID/                       SDK source, resources, README and LICENSE
+  TSSLPinningPublic/           XCFramework, Readme and LICENSE
+
+The two root podspecs were adapted to prefix file paths with the package
+directory name and point source.git/source.tag to this mirror. Their versions,
+modules and dependencies are unchanged. All upstream license texts and source
+notices are preserved.
+
+Mirror source:
+  https://github.com/amf0154/TinkoffID-iOS.git
+  tag: cache-2.0.3-11.14.0
+
+In the application's Podfile, point BOTH T-ID and TSSLPinningPublic explicitly
+to the mirror Git URL and pin the same immutable commit. A direct Podfile :git
+declaration takes precedence over the podspec's source for that installation.
+TrustKit remains a separate dependency from its existing GitHub/CDN source.
+
+Regenerate and review Podfile.lock after changing the Podfile. Do not copy the
+temporary validation Podfile.lock into the application.
+
+If CI runs scripts/setup_trusted_certs.sh, its default availability probe still
+contacts the old upstream. Set SKIP_NETWORK_CHECK=1 for that step after switching
+both packages to the mirror. This skips only the availability probe, not TLS
+certificate verification.
